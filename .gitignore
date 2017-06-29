@@ -1,6 +1,8 @@
 *.gem
 *.rbc
 /.config
+/.DS_Store
+/.rspec
 /coverage/
 /InstalledFiles
 /pkg/
