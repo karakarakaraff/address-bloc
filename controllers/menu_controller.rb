@@ -14,7 +14,8 @@ class MenuController
     puts "3 - Create an entry"
     puts "4 - Search for an entry"
     puts "5 - Import entries from a CSV"
-    puts "6 - Exit"
+    puts "6 - Demolish all entries"
+    puts "7 - Exit"
     print "Enter your selection: "
 
     selection = gets.to_i
@@ -40,7 +41,11 @@ class MenuController
       system "clear"
       read_csv
       main_menu
-    when 6 # exit
+    when 6 # delete all entries
+      system "clear"
+      demolish_entries
+      # main_menu
+    when 7 # exit
       puts "Goodbye!"
       exit(0)
     else
@@ -149,6 +154,28 @@ class MenuController
     rescue
       puts "#{file_name} is not a valid CSV file, please enter the name of a valid CSV file"
       read_csv
+    end
+  end
+
+  def demolish_entries
+    puts "Are you sure you want to demolish all entries?"
+    puts "1 - Yes, demolish all entries."
+    puts "2 - No, do not demolish anything."
+    answer = gets.chomp.to_i
+    case answer
+    when 1
+      address_book.entries.clear
+      system "clear"
+      puts "All entries have been demolished."
+      main_menu
+    when 2
+      system "clear"
+      puts "No entries have been demolished."
+      main_menu
+    else
+      system "clear"
+      puts "Sorry, that is not an answer."
+      demolish_entries
     end
   end
 
